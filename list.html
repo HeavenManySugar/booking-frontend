@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      ul.top {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #04364A;
+      }
+
+      li.top {
+        float: left;
+      }
+
+      li.top a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 19px;
+        text-decoration: #176B87;
+      }
+
+      li.top a:hover {
+        background-color: #64CCC5;
+      }
+
+      li.top a:active {
+        background-color: #DAFFFB;
+      }
+      /* Style the element with the id "myHeader" */
+      #myHeader {
+        background-color: lightblue;
+        color: black;
+        padding: 40px;
+        text-align: center;
+      }
+
+      /* Style all elements with the class name "city" */
+      .city {
+        background-color: tomato;
+        color: white;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="home">Navigation Menu</h2>
+    <p>
+      In this example, we use CSS to style the list horizontally, to create a
+      navigation menu:
+    </p>
+
+    <ul class="top">
+      <li class="top"><a href="#home" style="color: red">Home</a></li>
+      <li class="top"><a href="#news">News</a></li>
+      <li class="top"><a href="lab02partII.html">Contact</a></li>
+      <li class="top"><a href="#about">About</a></li>
+      <li class="top"><a href="#Sashimi">Sashimi</a></li>
+    </ul>
+
+    <h2>Difference Between Class and ID</h2>
+    <p>
+      A class name can be used by multiple HTML elements, while an id name must
+      only be used by one HTML element within the page:
+    </p>
+
+    <!-- An element with a unique id -->
+    <h1 id="myHeader">My Cities</h1>
+
+    <!-- Multiple elements with same class -->
+    <h2 class="city">London</h2>
+    <p>London is the capital of England.</p>
+
+    <h2 class="city">Paris</h2>
+    <p>Paris is the capital of France.</p>
+
+    <h2 class="city">Tokyo</h2>
+    <p>Tokyo is the capital of Japan.</p>
+
+    <div style="text-align: center" id="Sashimi"><h1>Exercise</h1></div>
+    <ol type="I">
+      <li><p>Chop potatoes into quarters</p></li>
+      <li><p>Simmer in salted water for 15-20 minutes until tender</p></li>
+      <ul style="list-style-type: square">
+        <li><p>1kg King Edward potatoes</p></li>
+        <li><p>100ml milk</p></li>
+        <li><p>50g salted butter</p></li>
+        <li><p>Freshly grated nutmeg</p></li>
+        <li><p>Salt and pepper to taste</p></li>
+        <li><p>Sashimi</p></li>
+        <ul style="list-style-type: none">
+          <li><p>Sliced raw fish served with condiments</p></li>
+        </ul>
+        <p>Scale</p>
+        <ul>
+          <p>A Device used to measure the weight of ingredients.</p>
+          <p>
+            A technique by which the scales are removed from the skin of fish.
+          </p>
+        </ul>
+      </ul>
+      <li><p>Heat milk, butter and nutmeg</p></li>
+      <li><p>Drain potatoes and mash</p></li>
+      <li><p>Mix in the milk mixture</p></li>
+    </ol>
+  </body>
+</html>
