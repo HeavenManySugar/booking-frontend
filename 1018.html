@@ -1,0 +1,33 @@
+<!-- FILEPATH: /c:/Users/user/Documents/Coding/112-1 Taipei Tech Web programming/1018.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Example</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <p id="myText">Nice to meet you!</p>
+    <img id="myImage" src="https://via.placeholder.com/300" alt="placeholder image">
+    <br>
+    <button onclick="addBorder()">Add Border</button>
+    <button onclick="changeTextColor()">Change Text Color</button>
+
+    <script>
+        function addBorder() {
+            var img = document.getElementById("myImage");
+            img.style.border = "5px solid black";
+        }
+
+        function changeTextColor() {
+            var p = document.getElementById("myText");
+            p.style.color = "red";
+        }
+    </script>
+</body>
+</html>
