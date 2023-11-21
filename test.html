@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <title>Canvas</title>
+
+</head>
+
+<body>
+
+    <canvas id="rect" width="500" height="400" style="border: 1px solid #000000;">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+
+    <script>
+        const canvas1 = document.getElementById("rect");
+        const ctx1 = canvas1.getContext("2d");
+
+        const grd1 = ctx1.createLinearGradient(50, 50, 200, 150);
+        grd1.addColorStop(0, "rgb(255, 0, 0, 0.2)");
+        grd1.addColorStop(1, "rgb(255, 0, 0, 0.7)");
+        ctx1.fillStyle = grd1;
+        ctx1.fillRect(50, 50, 250, 200);
+
+        const grd2 = ctx1.createLinearGradient(200, 150, 200, 450);
+        grd2.addColorStop(0, "rgb(0, 0, 255, 0.2)");
+        grd2.addColorStop(1, "rgb(0, 0, 255, 0.7)");
+        ctx1.fillStyle = grd2;
+        ctx1.fillRect(200, 150, 250, 200);
+
+        ctx1.beginPath();
+        ctx1.moveTo(50, 270);
+        ctx1.lineTo(180, 270);
+        ctx1.lineTo(180, 370);
+
+        ctx1.lineTo(450, 370);
+        ctx1.strokeStyle = "rgb(0, 255, 0, 0.5)";
+        ctx1.lineWidth = 10;
+        ctx1.stroke();
+
+        ctx1.beginPath();
+        ctx1.arc(450, 150, 25, Math.PI, 5 / 2 * Math.PI);
+        ctx1.strokeStyle = "rgb(255, 0, 255, 0.75)";
+        ctx1.lineWidth = 8;
+        ctx1.stroke();
+
+        ctx1.font = "20px Noto Sans TC";
+        ctx1.textBaseline = "middle";
+        ctx1.textAlign = "center";
+        ctx1.fillStyle = "rgb(255, 255, 255, 0.75)";
+        ctx1.fillText("overlap", 250, 200);
+    </script>
+
+    <canvas id="clock" width="400" height="400" style="background-color:#333">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+
+    <script>
+        const canvas2 = document.getElementById("clock");
+        const ctx2 = canvas2.getContext("2d");
+        let radius = canvas2.height / 2;
+        ctx2.translate(radius, radius);
+        radius = radius * 0.90
+        setInterval(drawClock, 10);
+
+        function drawClock() {
+            drawFace(ctx2, radius);
+            drawNumbers(ctx2, radius);
+            drawTime(ctx2, radius);
+            drawscales(ctx2, radius);
+            drawTextTime(ctx2, radius);
+        }
+
+        function drawFace(ctx2, radius) {
+            const grad = ctx2.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+            grad.addColorStop(0, '#333');
+            grad.addColorStop(0.5, '#777');
+            grad.addColorStop(1, '#333');
+            ctx2.beginPath();
+            ctx2.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx2.fillStyle = 'white';
+            ctx2.fill();
+            ctx2.strokeStyle = grad;
+            ctx2.lineWidth = radius * 0.1;
+            ctx2.stroke();
+            ctx2.beginPath();
+            ctx2.arc(0, 0, radius * 0.03, 0, 2 * Math.PI);
+            ctx2.fillStyle = '#333';
+            ctx2.fill();
+        }
+
+        function drawscales(ctx2, radius) {
+            for (let num = 1; num <= 60; num++) {
+                ctx2.beginPath();
+                let angle = num * Math.PI / 30;
+                ctx2.moveTo(radius * 0.90 * Math.cos(angle), radius * 0.90 * Math.sin(angle));
+                ctx2.lineTo(radius * 0.95 * Math.cos(angle), radius * 0.95 * Math.sin(angle));
+                if (num % 5 == 0)
+                    ctx2.lineWidth = 3;
+                else
+                    ctx2.lineWidth = 1;
+                ctx2.strokeStyle = "#333";
+                ctx2.stroke();
+            }
+        }
+
+        function drawNumbers(ctx2, radius) {
+            ctx2.font = radius * 0.15 + "px Noto Sans TC";
+            ctx2.textBaseline = "middle";
+            ctx2.textAlign = "center";
+            let roman = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+            for (let num = 1; num < 13; num++) {
+                let ang = num * Math.PI / 6;
+                ctx2.rotate(ang);
+                ctx2.translate(0, -radius * 0.75);
+                ctx2.rotate(-ang);
+                ctx2.fillText(roman[num - 1], 0, 0);
+                ctx2.rotate(ang);
+                ctx2.translate(0, radius * 0.75);
+                ctx2.rotate(-ang);
+            }
+        }
+
+
+
+        function drawTime(ctx2, radius) {
+            const now = new Date();
+            let hour = now.getHours();
+            let minute = now.getMinutes();
+            let second = now.getSeconds();
+            let milisecond = now.getMilliseconds();
+            //hour
+            hour = hour % 12;
+            hour = (hour * Math.PI / 6) +
+                (minute * Math.PI / (6 * 60)) +
+                (second * Math.PI / (360 * 60));
+            drawHand(ctx2, hour, radius * 0.5, radius * 0.07, "#1A120B");
+            //minute
+            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+            drawHand(ctx2, minute, radius * 0.8, radius * 0.07, "#3C2A21");
+            // second
+            second = (second * Math.PI / 30);
+            drawHand(ctx2, second, radius * 0.9, radius * 0.02, "red");
+            // small hand
+            milisecond = (milisecond * Math.PI / 500);
+            drawHand(ctx2, milisecond, radius * 0.9, radius * 0.01, "pink");
+        }
+
+
+        function drawSpecialHand(ctx2, pos, length, width, color) {
+            ctx2.strokeStyle = color;
+            ctx2.beginPath();
+            // polyline
+            ctx2.moveTo(0, 0);
+            ctx2.rotate(pos);
+            ctx2.lineTo(0, -length);
+            ctx2.stroke();
+            ctx2.rotate(-pos);
+        }
+        function drawHand(ctx2, pos, length, width, color) {
+            ctx2.strokeStyle = color;
+            ctx2.beginPath();
+            ctx2.lineWidth = width;
+            ctx2.lineCap = "round";
+
+            ctx2.moveTo(0, 0);
+            ctx2.rotate(pos);
+            ctx2.lineTo(0, -length);
+            ctx2.stroke();
+            ctx2.rotate(-pos);
+        }
+
+        function drawTextTime(ctx2, radius) {
+            ctx2.font = radius * 0.15 + "px Noto Sans TC";
+            ctx2.textBaseline = "middle";
+            ctx2.textAlign = "center";
+            let hr = new Date().getHours();
+            let min = new Date().getMinutes();
+            let sec = new Date().getSeconds();
+            ctx2.fillText(`${hr.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`, 0, -80);
+        }
+    </script>
+</body>
+
+</html>

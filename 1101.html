@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+
+var myGamePiece;
+var myGamePiece2 = [];
+var myGamePiece3 = [];
+var myGamePiece4;
+var paused = false;
+
+function startGame() {
+    myGameArea.start();
+    myGamePiece = new component(30, 30, "red", 10, 120);
+    myGamePiece2.push(new component(30, 120, "green", 100, -90));
+    myGamePiece2.push(new component(30, 30, "green", 130, 0));
+    myGamePiece3.push(new component(30, 120, "yellow", 200, 270));
+    myGamePiece3.push(new component(30, 30, "yellow", 230, 360));
+    myGamePiece4 = new component(30, 30, "blue", 480, 200);
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }    
+}
+
+function updateGameArea() {
+    if (paused) {
+        return;
+    }
+    myGameArea.clear();
+    myGamePiece.newPos();    
+    myGamePiece.update();
+    for (i = 0; i < myGamePiece2.length; i += 1) {
+        myGamePiece2[i].y += 1;
+        myGamePiece2[i].update();
+    }
+    for (i = 0; i < myGamePiece3.length; i += 1) {
+        myGamePiece3[i].y -= 1;
+        myGamePiece3[i].update();
+    }
+    myGamePiece4.x -= 1;
+    myGamePiece4.update();
+}
+
+function moveup() {
+    myGamePiece.speedY -= 1; 
+}
+
+function movedown() {
+    myGamePiece.speedY += 1; 
+}
+
+function moveleft() {
+    myGamePiece.speedX -= 1; 
+}
+
+function moveright() {
+    myGamePiece.speedX += 1; 
+}
+
+function stopMove() {
+  myGamePiece.speedX = 0;
+  myGamePiece.speedY = 0;
+}
+
+function pauseGame() {
+    paused = !paused;
+}
+
+</script>
+<div style="text-align:center;width:480px;">
+  <button onmousedown="moveup()" onmouseup="stopMove()" ontouchstart="moveup()">UP</button><br><br>
+  <button onmousedown="moveleft()" onmouseup="stopMove()" ontouchstart="moveleft()">LEFT</button>
+  <button onmousedown="moveright()" onmouseup="stopMove()" ontouchstart="moveright()">RIGHT</button><br><br>
+  <button onmousedown="movedown()" onmouseup="stopMove()" ontouchstart="movedown()">DOWN</button><br><br>
+  <button onclick="pauseGame()">PAUSE</button>
+</div>
+
+<p>If you click a button the red square will start moving. Click the same button many times, and it will move faster and faster.</p>
+</body>
+</html>
