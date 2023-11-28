@@ -98,10 +98,8 @@ function handleMouseDown(e) {
 
 function handleMouseMove(e) {
     if (isDragging) {
-        // myGamePiece.x = e.clientX - myGameArea.canvas.offsetLeft - myGamePiece.width / 2;
-        // myGamePiece.y = e.clientY - myGameArea.canvas.offsetTop - myGamePiece.height / 2;
-        myGamePiece = e.pageX;
-        myGamePiece = e.pageY;
+        myGamePiece.x = e.clientX - myGameArea.canvas.offsetLeft - myGamePiece.width / 2;
+        myGamePiece.y = e.clientY - myGameArea.canvas.offsetTop - myGamePiece.height / 2;
     }
 }
 

@@ -1,93 +1,32 @@
-<!-- FILEPATH: /c:/Users/user/Documents/Coding/112-1 Taipei Tech Web programming/tetris.html -->
-
+<!-- tetris.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tetris</title>
-    <style>
-        .game-board {
-            display: grid;
-            grid-template-columns: repeat(10, 30px);
-            grid-template-rows: repeat(20, 30px);
-            gap: 1px;
-            background-color: #333;
-        }
+  <title>Tetris</title>
+  <style>
+    /* CSS styles for the game board */
+    /* ... */
 
-        .cell {
-            width: 30px;
-            height: 30px;
-            background-color: #ddd;
-        }
-
-        .cell.active {
-            background-color: #f00;
-        }
-    </style>
+    /* CSS styles for the Tetriminos */
+    /* ... */
+  </style>
 </head>
 <body>
-    <div class="game-board"></div>
+  <div id="game-board"></div>
+  <div id="score">Score: 0</div>
 
-    <script>
-        const ROWS = 20;
-        const COLS = 10;
+  <script>
+    // JavaScript code for the Tetris game
+    // ...
 
-        // Create the game board
-        const board = [];
-        for (let row = 0; row < ROWS; row++) {
-            board[row] = Array(COLS).fill(0);
-        }
+    // Game logic
+    // ...
 
-        function update() {
-            // Move the current tetromino down
-            tetromino.y++;
+    // User input handling
+    // ...
 
-            // Check for collision
-            if (tetromino.collides()) {
-                // Add the tetromino to the game board
-                for (let row = 0; row < tetromino.shape.length; row++) {
-                    for (let col = 0; col < tetromino.shape[row].length; col++) {
-                        if (tetromino.shape[row][col]) {
-                            board[tetromino.y + row][tetromino.x + col] = 1;
-                        }
-                    }
-                }
-
-                // Create a new tetromino at the top of the board
-                tetromino = new Tetromino(getRandomShape(), 0, 0);
-            }
-
-            // Check for completed rows and clear them
-            for (let row = 0; row < ROWS; row++) {
-                if (board[row].every((cell) => cell !== 0)) {
-                    board.splice(row, 1);
-                    board.unshift(Array(COLS).fill(0));
-                }
-            }
-
-            // Render the game board
-            render();
-
-            // Call the update function again after a delay
-            setTimeout(update, 1000);
-        }
-
-        function render() {
-            const gameBoardElement = document.querySelector('.game-board');
-            gameBoardElement.innerHTML = '';
-
-            // Render the game board
-            for (let row = 0; row < ROWS; row++) {
-                for (let col = 0; col < COLS; col++) {
-                    const cell = document.createElement('div');
-                    cell.className = `cell ${board[row][col] ? 'active' : ''}`;
-                    gameBoardElement.appendChild(cell);
-                }
-            }
-        }
-
-        // Start the game
-        let tetromino = new Tetromino(getRandomShape(), 0, 0);
-        update();
-    </script>
+    // Game state update
+    // ...
+  </script>
 </body>
 </html>
