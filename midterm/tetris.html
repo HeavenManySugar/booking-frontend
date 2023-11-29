@@ -25,6 +25,23 @@
     border: 2px solid red;
     font-weight: bold;
   }
+  button, button:focus {
+  font-size: 17px;
+  padding: 10px 25px;
+  border-radius: 0.7rem;
+  background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+  border: 2px solid rgb(50, 50, 50);
+  border-bottom: 5px solid rgb(50, 50, 50);
+  box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+  transform: translate(0, -3px);
+  transition: 0.2s;
+  transition-timing-function: linear;
+}
+
+button:active {
+  transform: translate(0, 0);
+  border-bottom: 2px solid rgb(50, 50, 50);
+}
   </style>
 </head>
 <body>
@@ -367,6 +384,7 @@ function loop() {
 }
 
 function moveLeft() {
+  if (gameOver || isPaused) return;
   const col = tetromino.col - 1;
 
   if (isValidMove(tetromino.matrix, tetromino.row, col)) {
@@ -375,6 +393,7 @@ function moveLeft() {
 }
 
 function moveRight() {
+  if (gameOver || isPaused) return;
   const col = tetromino.col + 1;
 
   if (isValidMove(tetromino.matrix, tetromino.row, col)) {
@@ -383,6 +402,7 @@ function moveRight() {
 }
 
 function moveDown() {
+  if (gameOver || isPaused) return;
   const row = tetromino.row + 1;
 
   if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
@@ -396,6 +416,7 @@ function moveDown() {
 }
 
 function moveRotate() {
+  if (gameOver || isPaused) return;
   const matrix = rotate(tetromino.matrix);
 
   if (isValidMove(matrix, tetromino.row, tetromino.col)) {
