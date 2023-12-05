@@ -10,7 +10,7 @@
   }
 
   body {
-    background-color: whitesmoke;
+    background-color: #F0ECE5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,37 +25,75 @@
     border: 2px solid red;
     font-weight: bold;
   }
-  button, button:focus {
-  font-size: 17px;
-  padding: 10px 25px;
-  border-radius: 0.7rem;
-  background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
-  border: 2px solid rgb(50, 50, 50);
-  border-bottom: 5px solid rgb(50, 50, 50);
-  box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
-  transform: translate(0, -3px);
-  transition: 0.2s;
-  transition-timing-function: linear;
+/* CSS */
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
-button:active {
-  transform: translate(0, 0);
-  border-bottom: 2px solid rgb(50, 50, 50);
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
   </style>
+  <script src="https://kit.fontawesome.com/29557e65d7.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div><canvas width="320" height="640" id="game"></canvas></div>
 <div>
-  <button onclick="pauseGame()">Start</button>
-  <button onclick="moveLeft()">Left</button>
-  <button onclick="moveDown()">Down</button>
-  <button onclick="moveRight()">Right</button>
-  <button onclick="moveRotate()">Rotate</button>
-  <button onclick="resetgame()">Reset</button>
-  <button onclick="pauseGame()">Pause</button>
+  <button id="btn1" class="button-3" onclick="pauseGame()"><i class="fa-solid fa-pause"></i></button>
+  <button class="button-3" onclick="moveLeft()">&larr;</button>
+  <button class="button-3" onclick="moveDown()">&darr;</button>
+  <button class="button-3" onclick="moveRight()">&rarr;</button>
+  <button class="button-3" onclick="moveRotate()">&orarr;</button>
+  <button class="button-3" style="background-color:red" onclick="resetgame()">Reset</button>
 </div>
-
+<div>
+  <i class="fa-solid fa-hourglass fa-flip"></i>
+  <nobr id="time"></nobr>
+  <p><i class="fa-solid fa-clipboard-check fa-fade"></i>事件: <nobr id="eventnow">新遊戲</nobr></p>
+</div>
 <script>
 // https://tetris.fandom.com/wiki/Tetris_Guideline
 
@@ -154,6 +192,7 @@ function placeTetromino() {
   // check for line clears starting from the bottom and working our way up
   for (let row = playfield.length - 1; row >= 0; ) {
     if (playfield[row].every(cell => !!cell)) {
+      document.getElementById("eventnow").innerHTML = "消除列";
 
       // drop every row above this one
       for (let r = row; r >= 0; r--) {
@@ -174,6 +213,7 @@ function placeTetromino() {
 function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOver = true;
+  document.getElementById("eventnow").innerHTML = "遊戲結束";
 
   context.fillStyle = 'black';
   context.globalAlpha = 0.75;
@@ -258,11 +298,12 @@ const colors = {
   'L': 'orange'
 };
 
-let count = 0;
 let tetromino = getNextTetromino();
 let rAF = null;  // keep track of the animation frame so we can cancel it
 let gameOver = false;
 let selectedBlock = null; // Variable to store the selected block
+let newBlock = false;
+var last = new Date().getTime();
 
 // game loop
 function loop() {
@@ -297,6 +338,9 @@ function loop() {
   context.stroke();
   // highlight the selected block
   if (selectedBlock) {
+    document.getElementById("eventnow").innerHTML = "中斷::用戶拖動方塊";
+    document.getElementById("time").innerHTML = "距離上個事件過了 " + (0).toPrecision(4).slice(0, 5) + " 秒";
+    last = new Date().getTime();
     const { row, col, matrix } = selectedBlock;
     let col1 = col, row1 = row, lengthCol = matrix[0].length, lengthRow = matrix.length, flag;
     context.strokeStyle = 'red';
@@ -356,35 +400,49 @@ function loop() {
 
   // draw the active tetromino
   else if (tetromino) {
-
-    // tetromino falls every 35 frames
-    if (++count > 35) {
+    var now = new Date().getTime();
+    var elapsed = now - last;
+    document.getElementById("time").innerHTML = "距離上個事件過了 " + (elapsed/1000).toPrecision(4).slice(0, 5) + " 秒";
+    if (newBlock) {
+      document.getElementById("eventnow").innerHTML = "等待新方塊";
+    }
+    if (elapsed > 5000 && newBlock) {
+      newBlock = false;
+      document.getElementById("eventnow").innerHTML = "方塊自然下落";
+    }
+    // tetromino falls every 1 second
+    if (elapsed > 1000 && !newBlock) {
+      last = now
       tetromino.row++;
       count = 0;
+      document.getElementById("eventnow").innerHTML = "方塊自然下落";
 
       // place piece if it runs into anything
       if (!isValidMove(tetromino.matrix, tetromino.row, tetromino.col)) {
+        newBlock = true;
         tetromino.row--;
         placeTetromino();
       }
     }
   }
+  if (!newBlock) {
+    context.fillStyle = colors[tetromino.name];
 
-  context.fillStyle = colors[tetromino.name];
+    for (let row = 0; row < tetromino.matrix.length; row++) {
+      for (let col = 0; col < tetromino.matrix[row].length; col++) {
+        if (tetromino.matrix[row][col]) {
 
-  for (let row = 0; row < tetromino.matrix.length; row++) {
-    for (let col = 0; col < tetromino.matrix[row].length; col++) {
-      if (tetromino.matrix[row][col]) {
-
-        // drawing 1 px smaller than the grid creates a grid effect
-        context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
+          // drawing 1 px smaller than the grid creates a grid effect
+          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
+        }
       }
     }
   }
 }
 
 function moveLeft() {
-  if (gameOver || isPaused) return;
+  if (gameOver || isPaused || newBlock) return;
+  document.getElementById("eventnow").innerHTML = "左移方塊";
   const col = tetromino.col - 1;
 
   if (isValidMove(tetromino.matrix, tetromino.row, col)) {
@@ -393,7 +451,8 @@ function moveLeft() {
 }
 
 function moveRight() {
-  if (gameOver || isPaused) return;
+  if (gameOver || isPaused || newBlock) return;
+  document.getElementById("eventnow").innerHTML = "右移方塊";
   const col = tetromino.col + 1;
 
   if (isValidMove(tetromino.matrix, tetromino.row, col)) {
@@ -403,6 +462,9 @@ function moveRight() {
 
 function moveDown() {
   if (gameOver || isPaused) return;
+  document.getElementById("eventnow").innerHTML = "中斷::用戶下落方塊";
+  document.getElementById("time").innerHTML = "距離上個事件過了 " + (0).toPrecision(4).slice(0, 5) + " 秒";
+  newBlock = false;
   const row = tetromino.row + 1;
 
   if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
@@ -416,7 +478,8 @@ function moveDown() {
 }
 
 function moveRotate() {
-  if (gameOver || isPaused) return;
+  if (gameOver || isPaused || newBlock) return;
+  document.getElementById("eventnow").innerHTML = "旋轉方塊";
   const matrix = rotate(tetromino.matrix);
 
   if (isValidMove(matrix, tetromino.row, tetromino.col)) {
@@ -433,17 +496,30 @@ function resetgame() {
   generateSequence();
   tetromino = getNextTetromino();
   rAF = requestAnimationFrame(loop);
+  last = new Date().getTime();
+  document.getElementById("time").innerHTML = "距離上個事件過了 " + (0).toPrecision(4).slice(0, 5) + " 秒";
+  document.getElementById("eventnow").innerHTML = "新遊戲";
+  document.getElementById("btn1").innerHTML = "<i class=\"fa-solid fa-pause\"></i>";
+  isPaused = false;
 }
 
 let isPaused = false; // Variable to track if the game is paused
 
 function pauseGame() {
+  if (gameOver) return;
   if (isPaused) {
+    document.getElementById("btn1").innerHTML = "<i class=\"fa-solid fa-pause\"></i>";
     isPaused = false;
     rAF = requestAnimationFrame(loop); // Resume the game loop
+    document.getElementById("eventnow").innerHTML = "遊戲繼續";
+    last = new Date().getTime();
   } else {
+    document.getElementById("eventnow").innerHTML = "遊戲暫停";
+    document.getElementById("btn1").innerHTML = "<i class=\"fa-solid fa-play fa-fade\"></i>";
     isPaused = true;
     cancelAnimationFrame(rAF); // Pause the game loop
+    last = new Date().getTime();
+    document.getElementById("time").innerHTML = "距離上個事件過了 " + (0).toPrecision(4).slice(0, 5) + " 秒";
   }
 }
 
@@ -453,13 +529,12 @@ document.addEventListener('keydown', function(e) {
 
   // Pause the game when the 'P' key is pressed
   if (e.which === 80) {
-    if (isPaused) {
-      isPaused = false;
-      rAF = requestAnimationFrame(loop); // Resume the game loop
-    } else {
-      isPaused = true;
-      cancelAnimationFrame(rAF); // Pause the game loop
-    }
+    pauseGame();
+  }
+
+  // Press the 'R' key to reset the game
+  if (e.which === 82) {
+    resetgame();
   }
 
   // left and right arrow keys (move)
@@ -476,13 +551,15 @@ document.addEventListener('keydown', function(e) {
 
   // down arrow key (drop)
   if(e.which === 40) {
+    newBlock = false;
+    last = new Date().getTime();
     moveDown()
   }
 });
 
 // listen to mouse events to select and move the block
 canvas.addEventListener('mousedown', function(e) {
-  if (gameOver) return;
+  if (gameOver || isPaused) return;
   
   const mouseX = e.clientX - canvas.getBoundingClientRect().left;
   const mouseY = e.clientY - canvas.getBoundingClientRect().top;
@@ -499,7 +576,7 @@ canvas.addEventListener('mousedown', function(e) {
 });
 
 canvas.addEventListener('mousemove', function(e) {
-  if (gameOver || !selectedBlock) return;
+  if (gameOver || !selectedBlock || isPaused) return;
 
   const mouseX = e.clientX - canvas.getBoundingClientRect().left;
   const mouseY = e.clientY - canvas.getBoundingClientRect().top;
@@ -515,7 +592,7 @@ canvas.addEventListener('mousemove', function(e) {
 });
 
 canvas.addEventListener('mouseup', function(e) {
-  if (gameOver || !selectedBlock) return;
+  if (gameOver || !selectedBlock || isPaused) return;
 
   const mouseX = e.clientX - canvas.getBoundingClientRect().left;
   const mouseY = e.clientY - canvas.getBoundingClientRect().top;
