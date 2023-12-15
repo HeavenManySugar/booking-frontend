@@ -1,8 +1,11 @@
 # README
 [Github](https://github.com/HeavenManySugar/webprogramming/tree/main/midterm)
+## 更新內容1215-3
+> [!IMPORTANT]  
+> 修正在rotate中isVaildMove沒有正確判斷的問題
 ## 更新內容1215-2
 > [!IMPORTANT]  
-> 修正isVaildMove沒有正確判斷的問題
+> 修正isVaildMove沒有正確判斷多個下降中方塊的問題
 ## 更新內容1215
 1. 撰寫 README.md
 2. 修正沒有正確實現五秒出現新方塊的問題
