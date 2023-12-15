@@ -1,5 +1,6 @@
 # README
 [Github](https://github.com/HeavenManySugar/webprogramming/tree/main/midterm)
+[GitHub Pages](https://heavenmanysugar.github.io/webprogramming/midterm/tetris.html)
 ## 更新內容1215-4
 將網頁拆為多個檔案(html、css、js)
 ## 更新內容1215-3
