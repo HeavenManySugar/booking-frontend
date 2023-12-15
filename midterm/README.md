@@ -1,5 +1,7 @@
 # README
 [Github](https://github.com/HeavenManySugar/webprogramming/tree/main/midterm)
+## 更新內容1215-4
+將網頁拆為多個檔案(html、css、js)
 ## 更新內容1215-3
 > [!IMPORTANT]  
 > 修正在rotate中isVaildMove沒有正確判斷的問題
