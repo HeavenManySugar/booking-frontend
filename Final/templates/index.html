@@ -18,6 +18,12 @@ title%} {% block head %}
     /* Declare heights because of positioning of img element */
     .carousel-item {
         height: 19rem;
+        
+    }
+    .carousel-item img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
     /* MARKETING CONTENT
@@ -85,10 +91,10 @@ title%} {% block head %}
 <main>
     <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class=""
-                aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active"
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
                 aria-current="true"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
+                class=""></button>
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
                 class=""></button>
         </div>
