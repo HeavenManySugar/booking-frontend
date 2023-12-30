@@ -1,0 +1,51 @@
+{% extends "layout/base.html" %} {% block title %}Hotel Booking{% endblock
+title%} {% block head %}{% endblock head %} {% block body %}
+<main>
+    {% macro render_field(field) %}
+    <div class="form-group">
+        {{ field.label }} {{ field(class="form-control") }}
+    </div>
+    {% endmacro %}
+
+    <div class="container">
+        <h2>Book a Room</h2>
+        <form method="post">
+            {{ form.hidden_tag() }} {{ render_field(form.guest_name) }} {{
+            render_field(form.room_number) }} {{ render_field(form.check_in_date) }}
+            {{ render_field(form.check_out_date) }} {{ render_field(form.contact_info)
+            }}
+
+            <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+        </form>
+    </div>
+
+    {% if form.errors %}
+    <script>
+        {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+        var el = document.querySelector("#{{ field }}");
+        el.setCustomValidity("{{ error }}");
+        el.reportValidity();
+        {% endfor %}
+        {% endfor %}
+        formControl = document.querySelectorAll(".form-control");
+        formControl.forEach(function (formControl) {
+            formControl.addEventListener("change", function () {
+                var el = document.querySelectorAll(".form-control");
+                el.forEach(function (el) {
+                    el.setCustomValidity("");
+                });
+            });
+        });
+    </script>
+    {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var navLink = document.querySelector(".nav-link[href='booking']");
+            navLink.classList.add("active");
+            navLink.setAttribute("aria-current", "page");
+        });
+    </script>
+</main>
+{% endblock body %}
