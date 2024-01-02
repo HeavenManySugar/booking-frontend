@@ -2,10 +2,12 @@
 body {
   font-family: 'Arial', sans-serif;
 }
+
 .content {
   margin-left: 150px;
   padding: 20px;
 }
+
 .bi {
   width: 1em;
   height: 1em;
@@ -16,7 +18,7 @@ body {
   .dropdown-menu {
     padding: .25rem;
 
-    li + li {
+    li+li {
       margin-top: .125rem;
     }
   }
@@ -29,7 +31,7 @@ body {
     font-weight: 600;
 
     .bi {
-      display: block !important; // stylelint-disable-line declaration-no-important
+      display: block !important;
     }
   }
 }
