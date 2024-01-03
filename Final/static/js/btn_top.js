@@ -3,7 +3,7 @@
     //Get the button
     let mybutton = document.getElementById("btn-back-to-top");
 
-    // When the user scrolls down 20px from the top of the document, show the button
+    // When the user scrolls down 20px from the top of the document, show the button with fade-in effect
     window.onscroll = function () {
         scrollFunction();
     };
@@ -13,9 +13,9 @@
             document.body.scrollTop > 20 ||
             document.documentElement.scrollTop > 20
         ) {
-            mybutton.style.display = "block";
+            $(mybutton).fadeIn();
         } else {
-            mybutton.style.display = "none";
+            $(mybutton).fadeOut();
         }
     }
     // When the user clicks on the button, scroll to the top of the document
