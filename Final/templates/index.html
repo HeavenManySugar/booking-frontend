@@ -4,7 +4,7 @@ title%} {% block head %}
 </head>
 {% endblock head %} {% block body %}
 <main>
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-aos="zoom-out">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
                 aria-current="true"></button>
@@ -70,7 +70,7 @@ title%} {% block head %}
     <div class="container marketing">
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4" data-aos="fade-up">
                 <img src="{{ url_for('static', filename='images/ai_hotel_single_room.jpg') }}" class="rounded-circle"  width="140" height="140"
                     alt="..." />
                 <h2 class="fw-normal">Single Room</h2>
@@ -80,7 +80,7 @@ title%} {% block head %}
                 <p><a class="btn btn-secondary" href="#">View details »</a></p>
             </div>
             <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="rounded-circle"  width="140" height="140"
                     alt="..." />
                 <h2 class="fw-normal">Double Room</h2>
@@ -90,7 +90,7 @@ title%} {% block head %}
                 <p><a class="btn btn-secondary" href="#">View details »</a></p>
             </div>
             <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                 <img src="{{ url_for('static', filename='images/ai_hotel_deluxe_room.jpg') }}" class="rounded-circle"  width="140" height="140"
                     alt="..." />
                 <h2 class="fw-normal">Deluxe Room</h2>
@@ -105,21 +105,21 @@ title%} {% block head %}
 
         <!-- START THE FEATURETTES -->
 
-        <hr class="featurette-divider" />
+        <hr class="featurette-divider"/>
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">
+                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
                     A Modern Hotel in
                     <span class="text-body-secondary">the Golden City</span>
                 </h2>
-                <p class="lead">
+                <p class="lead" data-aos="fade-up" data-aos-delay="100">
                     The hotel is a stunning example of modern architecture that shines in the golden sunset.
                     It is nestled in the lively heart of the city, where you can experience the business district and
                     the shopping area at your fingertips.
                 </p>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
                 <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
                 height="500"
                     alt="..."  />
@@ -130,16 +130,16 @@ title%} {% block head %}
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">
+                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
                     Enjoy the Comfort and
                     <span class="text-body-secondary">Service of Our Hotel Lobby</span>
                 </h2>
-                <p class="lead">
+                <p class="lead" data-aos="fade-up" data-aos-delay="100">
                     The lobby is spacious and bright, with a 24-hour front desk and
                     a tour desk that can assist guests with travel arrangements.
                 </p>
             </div>
-            <div class="col-md-5 order-md-1">
+            <div class="col-md-5 order-md-1" data-aos="zoom-in" data-aos-delay="100">
                 <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
                 height="500"
                     alt="..." />
@@ -150,11 +150,11 @@ title%} {% block head %}
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">
+                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
                     Spacious Rooms with City Views and
                     <span class="text-body-secondary">24-Hour Room Service</span>
                 </h2>
-                <p class="lead">
+                <p class="lead" data-aos="fade-up" data-aos-delay="100">
                     The rooms are spacious and bright, with large windows that offer stunning views of the city.
                     You can enjoy the convenience of free Wi-Fi, flat-screen TV, minibars and private bathrooms in every
                     room.
@@ -162,7 +162,7 @@ title%} {% block head %}
                     to satisfy your cravings.
                 </p>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
                 <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
                 height="500"
                     alt="..." />
@@ -176,6 +176,10 @@ title%} {% block head %}
     <!-- /.container -->
 </main>
 
+
+{% endblock body %}
+
+{% block script%}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var navLink = document.querySelector(".nav-link[href='/']");
@@ -183,4 +187,4 @@ title%} {% block head %}
         navLink.setAttribute("aria-current", "page");
     });
 </script>
-{% endblock body %}
+{% endblock script%}
