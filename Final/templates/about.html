@@ -251,4 +251,11 @@ title%} {% block head %}
     });
   });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var navLink = document.querySelector(".nav-link[href='about']");
+        navLink.classList.add("active");
+        navLink.setAttribute("aria-current", "page");
+    });
+</script>
 {% endblock script%}

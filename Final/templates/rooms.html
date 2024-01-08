@@ -306,3 +306,12 @@ title%} {% block head %} {% endblock head %} {% block body %}
 </div>
 {% endblock body %}
 
+{% block script%}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var navLink = document.querySelector(".nav-link[href='rooms']");
+        navLink.classList.add("active");
+        navLink.setAttribute("aria-current", "page");
+    });
+</script>
+{% endblock script%}
