@@ -13,9 +13,9 @@ title%} {% block head %}
     <div class="row align-items-center">
       <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
         <figure class="img-absolute">
-          <img src="images/food-1.jpg" alt="Free Website Template by Templateux" class="img-fluid">
+          <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" alt="Free Website Template by Templateux" class="img-fluid">
         </figure>
-        <img src="images/img_1.jpg" alt="Image" class="img-fluid rounded">
+        <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" alt="Image" class="img-fluid rounded">
       </div>
       <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
         <h2 class="heading">Welcome!</h2>
@@ -23,7 +23,7 @@ title%} {% block head %}
           live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
           language ocean.</p>
         <p><a href="#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span
-            class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"
+            class="mr-3 font-family-serif"><em>or</em></span> <a href="https://shattereddisk.github.io/rickroll/rickroll.mp4"
             data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
       </div>
 
@@ -43,7 +43,7 @@ title%} {% block head %}
     <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
       <div class="block-2">
         <div class="flipper">
-          <div class="front" style="background-image: url(images/person_3.jpg);">
+          <div class="front" style="background-image: url({{ url_for('static', filename='images/cat1.webp') }});">
             <div class="box">
               <h2>Will Peters</h2>
               <p>President</p>
@@ -58,7 +58,7 @@ title%} {% block head %}
             </blockquote>
             <div class="author d-flex">
               <div class="image mr-3 align-self-center">
-                <img src="images/person_3.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/cat1.webp') }}" alt="">
               </div>
               <div class="name align-self-center">Will Peters <span class="position">President</span></div>
             </div>
@@ -70,7 +70,7 @@ title%} {% block head %}
     <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
       <div class="block-2"> <!-- .hover -->
         <div class="flipper">
-          <div class="front" style="background-image: url(images/person_1.jpg);">
+          <div class="front" style="background-image: url({{ url_for('static', filename='images/cat2.jpg') }});">
             <div class="box">
               <h2>Jane Williams</h2>
               <p>Business Manager</p>
@@ -85,7 +85,7 @@ title%} {% block head %}
             </blockquote>
             <div class="author d-flex">
               <div class="image mr-3 align-self-center">
-                <img src="images/person_1.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/cat2.jpg') }}" alt="">
               </div>
               <div class="name align-self-center">Jane Williams <span class="position">Business Manager</span></div>
             </div>
@@ -97,7 +97,7 @@ title%} {% block head %}
     <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
       <div class="block-2">
         <div class="flipper">
-          <div class="front" style="background-image: url(images/person_2.jpg);">
+          <div class="front" style="background-image: url({{ url_for('static', filename='images/cat3.jpg') }});">
             <div class="box">
               <h2>Jeffrey Neddery</h2>
               <p>Marketing Director</p>
@@ -112,7 +112,7 @@ title%} {% block head %}
             </blockquote>
             <div class="author d-flex">
               <div class="image mr-3 align-self-center">
-                <img src="images/person_2.jpg" alt="">
+                <img src="{{ url_for('static', filename='images/cat3.jpg') }}" alt="">
               </div>
               <div class="name align-self-center">Jeffrey Neddery <span class="position">Marketing Director</span></div>
             </div>
