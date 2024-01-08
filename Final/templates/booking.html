@@ -109,10 +109,6 @@ title%} {% block head %}
               var navLink = document.querySelector(".nav-link[href='booking']");
               navLink.classList.add("active");
               navLink.setAttribute("aria-current", "page");
-            //   var fi = document.querySelector(".form-control#check_in_date").flatpickr({allowInput: true, altInput: true, altFormat: "j F, Y", minDate: "today"});
-            //   var fo = document.querySelector(".form-control#check_out_date").flatpickr({allowInput: true, altInput: true, altFormat: "j F, Y", minDate: "today"});
-            //   fi._input.onkeypress = () => false;
-            //   fo._input.onkeypress = () => false;
             document.querySelector(".form-control#check_in_date").flatpickr({minDate: "today"});
             document.querySelector(".form-control#check_out_date").flatpickr({minDate: "today"});
           });
