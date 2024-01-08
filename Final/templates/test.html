@@ -32,11 +32,11 @@ title%} {% block head %}
     {% if form.errors %}
     <script>
         {% for field, errors in form.errors.items() %}
-        {% for error in errors %}
-        var el = document.querySelector("#{{ field }}");
-        el.setCustomValidity("{{ error }}");
-        el.reportValidity();
-        {% endfor %}
+            {% for error in errors %}
+                var el = document.querySelector("#{{ field }}");
+                el.setCustomValidity("{{ error }}");
+                el.reportValidity();
+            {% endfor %}
         {% endfor %}
         formControl = document.querySelectorAll(".form-control");
         formControl.forEach(function (formControl) {
