@@ -16,10 +16,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Example room data (in a real application, this would come from a database)
-rooms = [
-    ('101', 'Single Room'),
-    ('102', 'Double Room'),
-    ('103', 'Deluxe Room')
+room_type = [
+    'Single Room',
+    'Double Room',
+    'Deluxe Room'
 ]
 
 class Guest(db.Model):
@@ -36,16 +36,17 @@ class Booking(db.Model):
     check_in_date = db.Column(db.Date, nullable=False)
     check_out_date = db.Column(db.Date, nullable=False)
     total_price = db.Column(db.Float, nullable=False)
+    room_type = db.Column(db.String(255), nullable=False)
 
-    guest = db.relationship('Guest', backref='bookings')
+    guest = db.relationship('Guest', backref='booking')
 
 class BookingForm(FlaskForm):
-    guest_name = StringField('Guest Name', validators=[DataRequired()])
-    room_number = SelectField('Room Number', choices=rooms, validators=[DataRequired()])
-    check_in_date = DateField('Check-In Date', format='%Y-%m-%d', validators=[DataRequired()])
-    check_out_date = DateField('Check-Out Date', format='%Y-%m-%d', validators=[DataRequired()])
-    contact_email = EmailField('Contact Email', validators=[DataRequired()])
-    contact_phone = TelField('Contact Phone', validators=[DataRequired()])
+    guest_name = StringField('Guest Name', validators=[DataRequired()], description="Name")
+    room_type = SelectField('Room Type', choices=room_type, validators=[DataRequired()], description="Room Type")
+    check_in_date = DateField('Check-In Date', format='%Y-%m-%d', validators=[DataRequired()], description="Check-In Date")
+    check_out_date = DateField('Check-Out Date', format='%Y-%m-%d', validators=[DataRequired()], description="Check-Out Date")
+    contact_email = EmailField('Contact Email', validators=[DataRequired()], description="Email")
+    contact_phone = TelField('Contact Phone', validators=[DataRequired()], description="Phone Number")
     submit = SubmitField('Book Now')
     def validate_check_in_date(self, field):
         if field.data >= self.check_out_date.data:
@@ -59,14 +60,17 @@ def index():
 def booking():
     form = BookingForm()
     if form.validate_on_submit():
-        new_guest = Guest(guest_name=form.guest_name.data, contact_email=form.contact_email.data, contact_phone=form.contact_phone.data)
+        new_guest = Guest(guest_name=form.guest_name.data, contact_phone=form.contact_phone.data,
+                          contact_email=form.contact_email.data)
         db.session.add(new_guest)
         db.session.flush()  # Flush to get the ID of the new guest
 
         new_booking = Booking(
-            guest_id = new_guest.guest_id,
-            check_in_date = form.check_in_date.data,
-            check_out_date = form.check_out_date.data
+            guest_id=new_guest.guest_id,
+            room_type=form.room_type.data,
+            check_in_date=form.check_in_date.data,
+            check_out_date=form.check_out_date.data,
+            total_price=100.0,  # change this to calculate the total price based on room type
         )
         db.session.add(new_booking)
         db.session.commit()
@@ -84,7 +88,8 @@ def about():
 
 @app.route('/test')
 def test():
-    return render_template('test.html')
+    form = BookingForm()
+    return render_template('test.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

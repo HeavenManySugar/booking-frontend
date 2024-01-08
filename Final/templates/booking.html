@@ -2,63 +2,79 @@
 title%} {% block head %}
     <!-- Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-{% endblock head %} {% block body %}
-<main>
-    {% macro render_field(field) %}
-    <div class="form-group">
-        {{ field.label }} {{ field(class="form-control") }}
-    </div>
-    {% endmacro %}
-
-    <div class="container">
-        <h2>Book a Room</h2>
-        <form method="post">
-            {{ form.hidden_tag() }} {{ render_field(form.guest_name) }} {{
-            render_field(form.room_number) }} {{ render_field(form.check_in_date) }}
-            {{ render_field(form.check_out_date) }} {{ render_field(form.contact_email)
-            }} {{ render_field(form.contact_phone)}}
-
-            <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
-        </form>
-    </div>
-
-</main>
-{% endblock body %}
-
-{% block script%}
-    <!-- Flatpickr -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    {% if form.errors %}
-    <script>
-        {% for field, errors in form.errors.items() %}
-        {% for error in errors %}
-        var el = document.querySelector("#{{ field }}");
-        el.setCustomValidity("{{ error }}");
-        el.reportValidity();
-        {% endfor %}
-        {% endfor %}
-        formControl = document.querySelectorAll(".form-control");
-        formControl.forEach(function (formControl) {
-            formControl.addEventListener("change", function () {
-                var el = document.querySelectorAll(".form-control");
-                el.forEach(function (el) {
-                    el.setCustomValidity("");
-                });
-            });
-        });
-    </script>
-    {% endif %}
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var navLink = document.querySelector(".nav-link[href='booking']");
-            navLink.classList.add("active");
-            navLink.setAttribute("aria-current", "page");
-            $(".form-control#check_in_date").flatpickr({minDate: "today"});
-            $(".form-control#check_out_date").flatpickr({minDate: "today"});
-        });
-    </script>
-
+    <!-- bs-stepper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper@1.7.0/dist/css/bs-stepper.min.css" integrity="sha256-ANeiWnWqm6gfpNdDeuiElQBFVDc3o79vZDuOXOGJ0Gs=" crossorigin="anonymous">
+    {% endblock head %} {% block body %}
+    <main>
+        {% macro render_field(field) %}
+        <div class="form-group">
+            {{ field.label }} {% if field.flags.required %}<span class="text-danger font-weight-bold">*</span>{% endif %}
+            {{ field(class="form-control", placeholder="Enter " + field.description) }}
+            <div class="invalid-feedback">Please fill the password field</div>
+        </div>
+        {% endmacro %}
+        <div class="container">
+            <h3>Form validation</h3>
+            <div id="stepperForm" class="bs-stepper">
+            <div class="bs-stepper-header" role="tablist">
+                <div class="step" data-target="#test-form-1">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger1" aria-controls="test-form-1">
+                    <span class="bs-stepper-circle">1</span>
+                    <span class="bs-stepper-label">Email</span>
+                </button>
+                </div>
+                <div class="bs-stepper-line"></div>
+                <div class="step" data-target="#test-form-2">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger2" aria-controls="test-form-2">
+                    <span class="bs-stepper-circle">2</span>
+                    <span class="bs-stepper-label">Password</span>
+                </button>
+                </div>
+                <div class="bs-stepper-line"></div>
+                <div class="step" data-target="#test-form-3">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger3" aria-controls="test-form-3">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label">Validate</span>
+                </button>
+                </div>
+            </div>
+            <div class="bs-stepper-content">
+                <form class="needs-validation" onSubmit="return false" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <div id="test-form-1" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger1">
+                   {{ render_field(form.room_type) }}
+                    <button class="btn btn-primary btn-next-form">Next</button>
+                </div>
+                <div id="test-form-2" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger2">
+                    {{ render_field(form.guest_name) }}
+                    {{ render_field(form.check_in_date) }}
+                    {{ render_field(form.check_out_date) }}
+                    {{ render_field(form.contact_email) }}
+                    {{ render_field(form.contact_phone) }}
+                    <button class="btn btn-primary btn-next-form">Next</button>
+                </div>
+                <div id="test-form-3" role="tabpanel" class="bs-stepper-pane fade text-center" aria-labelledby="stepperFormTrigger3">
+                    {{ form.submit(class="btn btn-primary mt-5") }}
+                </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    {% endblock body %}
     
-{% endblock script%}
+    {% block script%}
+      <!-- bs-stepper -->
+      <script src="https://cdn.jsdelivr.net/npm/bs-stepper@1.7.0/dist/js/bs-stepper.min.js" integrity="sha256-INfYp5owpb0btFquNHGlhSxgGYrFlGYRU2oN/3jWGeM=" crossorigin="anonymous"></script>
+      <!-- Flatpickr -->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              var navLink = document.querySelector(".nav-link[href='booking']");
+              navLink.classList.add("active");
+              navLink.setAttribute("aria-current", "page");
+              $(".form-control#check_in_date").flatpickr({minDate: "today"});
+              $(".form-control#check_out_date").flatpickr({minDate: "today"});
+          });
+      </script>
+      <script src="{{ url_for('static', filename='js/stepper.js') }}"></script>
+    {% endblock script%}
