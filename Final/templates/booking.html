@@ -21,10 +21,14 @@ title%} {% block head %}
             <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
         </form>
     </div>
+
 </main>
 {% endblock body %}
 
 {% block script%}
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     {% if form.errors %}
     <script>
         {% for field, errors in form.errors.items() %}
@@ -51,10 +55,8 @@ title%} {% block head %}
             var navLink = document.querySelector(".nav-link[href='booking']");
             navLink.classList.add("active");
             navLink.setAttribute("aria-current", "page");
+            $(".form-control#check_in_date").flatpickr({minDate: "today"});
+            $(".form-control#check_out_date").flatpickr({minDate: "today"});
         });
     </script>
-
-    <!-- Flatpickr -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 {% endblock script%}
