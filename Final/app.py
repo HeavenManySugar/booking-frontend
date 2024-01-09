@@ -16,11 +16,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Example room data (in a real application, this would come from a database)
-room_type = [
-    'Single Room',
-    'Double Room',
-    'Deluxe Room'
-]
+room_price = {
+    'Single Room': 100.0,
+    'Double Room': 150.0,
+    'Deluxe Room': 200.0
+}
 
 class Guest(db.Model):
     __tablename__ = 'guest'
@@ -42,7 +42,7 @@ class Booking(db.Model):
 
 class BookingForm(FlaskForm):
     guest_name = StringField('Guest Name', validators=[DataRequired()], description="Name")
-    room_type = SelectField('Room Type', choices=room_type, validators=[DataRequired()], description="Room Type")
+    room_type = SelectField('Room Type', choices=room_price.keys(), validators=[DataRequired()], description="Room Type")
     check_in_date = DateField('Check-In Date', format='%Y-%m-%d', validators=[DataRequired()], description="Check-In Date")
     check_out_date = DateField('Check-Out Date', format='%Y-%m-%d', validators=[DataRequired()], description="Check-Out Date")
     contact_email = EmailField('Contact Email', validators=[DataRequired()], description="Email")
@@ -65,17 +65,20 @@ def booking():
         db.session.add(new_guest)
         db.session.flush()  # Flush to get the ID of the new guest
 
+        total_days = (form.check_out_date.data - form.check_in_date.data).days
+        total_price = total_days * room_price[form.room_type.data]
+        
         new_booking = Booking(
             guest_id=new_guest.guest_id,
             room_type=form.room_type.data,
             check_in_date=form.check_in_date.data,
             check_out_date=form.check_out_date.data,
-            total_price=100.0,  # change this to calculate the total price based on room type
+            total_price=total_price,
         )
         db.session.add(new_booking)
         db.session.commit()
         
-        return redirect(url_for('index'))
+        return render_template('success.html', form=form, total_price=total_price)
     return render_template('booking.html', form=form)
 
 @app.route('/rooms')
@@ -88,8 +91,7 @@ def about():
 
 @app.route('/test')
 def test():
-    form = BookingForm()
-    return render_template('test.html', form=form)
+    return render_template('success.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

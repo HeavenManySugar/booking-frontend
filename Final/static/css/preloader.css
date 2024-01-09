@@ -1,5 +1,5 @@
 /* Preloder */
-#preloder {
+[data-bs-theme=dark] #preloder {
   position: fixed;
   width: 100%;
   height: 100%;

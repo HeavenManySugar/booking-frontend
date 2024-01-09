@@ -1,190 +1,190 @@
 {% extends "layout/base.html" %} {% block title %}Hotel{% endblock
-title%} {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
-</head>
-{% endblock head %} {% block body %}
-<main>
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-aos="zoom-out">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
-                aria-current="true"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
-                class=""></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
-                class=""></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" class="d-block w-100"
-                    alt="..." />
-                <div class="container">
-                    <div class="carousel-caption text-start text-white">
-                        <h1>Enjoy the Beauty</h1>
-                        <p class="opacity-75">
-                            A Modern Hotel in the Golden City
-                        </p>
-                        <p><a class="btn btn-lg btn-primary" href="booking">Booking now</a></p>
+    title%} {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
+    </head>
+    {% endblock head %} {% block body %}
+    <main>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-aos="zoom-out">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
+                    aria-current="true"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
+                    class=""></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
+                    class=""></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" class="d-block w-100 lazy"
+                        alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption text-start text-white">
+                            <h1>Enjoy the Beauty</h1>
+                            <p class="opacity-75">
+                                A Modern Hotel in the Golden City
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="booking">Booking now</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" class="d-block w-100 lazy" alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption text-light">
+                            <h1>Enjoy the Comfort</h1>
+                            <p>
+                                The lobby is spacious and bright, with a 24-hour front desk.
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="about">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="d-block w-100 lazy" alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption text-end text-light">
+                            <h1>Spacious Rooms with City Views</h1>
+                            <p>
+                                You can enjoy the convenience of free Wi-Fi, flat-screen TV, minibars and private bathrooms
+                                in every room.
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="about#gallery">Browse gallery</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" class="d-block w-100" alt="..." />
-                <div class="container">
-                    <div class="carousel-caption text-light">
-                        <h1>Enjoy the Comfort</h1>
-                        <p>
-                            The lobby is spacious and bright, with a 24-hour front desk.
-                        </p>
-                        <p><a class="btn btn-lg btn-primary" href="about">Learn more</a></p>
-                    </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+    
+        <div class="container marketing">
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-up">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_single_room.jpg') }}" class="rounded-circle lazy"  width="140" height="140"
+                        alt="..." />
+                    <h2 class="fw-normal">Single Room</h2>
+                    <p>
+                        Our single rooms are designed with simplicity in mind and come equipped with modern amenities. These rooms are perfect for those looking for a comfortable stay at an affordable price.
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="rounded-circle lazy"  width="140" height="140"
+                        alt="..." />
+                    <h2 class="fw-normal">Double Room</h2>
+                    <p>
+                        Our double rooms are perfect for couples or friends traveling together. These rooms are spacious and comfortable, with a king-size bed. The rooms also feature a minibar.
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_deluxe_room.jpg') }}" class="rounded-circle lazy"  width="140" height="140"
+                        alt="..." />
+                    <h2 class="fw-normal">Deluxe Room</h2>
+                    <p>
+                        Our deluxe rooms provide a luxurious and comfortable stay. They are perfect for those who want to enjoy the best of both worlds - a relaxing stay in a luxurious room with all the amenities you need.
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+    
+            <!-- START THE FEATURETTES -->
+    
+            <hr class="featurette-divider"/>
+    
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
+                        A Modern Hotel in
+                        <span class="text-body-secondary">the Golden City</span>
+                    </h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        The hotel is a stunning example of modern architecture that shines in the golden sunset.
+                        It is nestled in the lively heart of the city, where you can experience the business district and
+                        the shopping area at your fingertips.
+                    </p>
+                </div>
+                <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" class="featurette-image img-fluid mx-auto lazy" width="500"
+                    height="500"
+                        alt="..."  />
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="d-block w-100" alt="..." />
-                <div class="container">
-                    <div class="carousel-caption text-end text-light">
-                        <h1>Spacious Rooms with City Views</h1>
-                        <p>
-                            You can enjoy the convenience of free Wi-Fi, flat-screen TV, minibars and private bathrooms
-                            in every room.
-                        </p>
-                        <p><a class="btn btn-lg btn-primary" href="about#gallery">Browse gallery</a></p>
-                    </div>
+    
+            <hr class="featurette-divider" />
+    
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
+                        Enjoy the Comfort and
+                        <span class="text-body-secondary">Service of Our Hotel Lobby</span>
+                    </h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        The lobby is spacious and bright, with a 24-hour front desk and
+                        a tour desk that can assist guests with travel arrangements.
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" class="featurette-image img-fluid mx-auto lazy" width="500"
+                    height="500"
+                        alt="..." />
                 </div>
             </div>
+    
+            <hr class="featurette-divider" />
+    
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
+                        Spacious Rooms with City Views and
+                        <span class="text-body-secondary">24-Hour Room Service</span>
+                    </h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        The rooms are spacious and bright, with large windows that offer stunning views of the city.
+                        You can enjoy the convenience of free Wi-Fi, flat-screen TV, minibars and private bathrooms in every
+                        room.
+                        Whether you need a snack, a drink or a full meal, you can always count on our 24-hour room service
+                        to satisfy your cravings.
+                    </p>
+                </div>
+                <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="featurette-image img-fluid mx-auto lazy" width="500"
+                    height="500"
+                        alt="..." />
+                </div>
+            </div>
+    
+            <hr class="featurette-divider" />
+    
+            <!-- /END THE FEATURETTES -->
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-lg-4" data-aos="fade-up">
-                <img src="{{ url_for('static', filename='images/ai_hotel_single_room.jpg') }}" class="rounded-circle"  width="140" height="140"
-                    alt="..." />
-                <h2 class="fw-normal">Single Room</h2>
-                <p>
-                    Our single rooms are designed with simplicity in mind and come equipped with modern amenities. These rooms are perfect for those looking for a comfortable stay at an affordable price.
-                </p>
-                <p><a class="btn btn-secondary" href="#">View details »</a></p>
-            </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="rounded-circle"  width="140" height="140"
-                    alt="..." />
-                <h2 class="fw-normal">Double Room</h2>
-                <p>
-                    Our double rooms are perfect for couples or friends traveling together. These rooms are spacious and comfortable, with a king-size bed. The rooms also feature a minibar.
-                </p>
-                <p><a class="btn btn-secondary" href="#">View details »</a></p>
-            </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <img src="{{ url_for('static', filename='images/ai_hotel_deluxe_room.jpg') }}" class="rounded-circle"  width="140" height="140"
-                    alt="..." />
-                <h2 class="fw-normal">Deluxe Room</h2>
-                <p>
-                    Our deluxe rooms provide a luxurious and comfortable stay. They are perfect for those who want to enjoy the best of both worlds - a relaxing stay in a luxurious room with all the amenities you need.
-                </p>
-                <p><a class="btn btn-secondary" href="#">View details »</a></p>
-            </div>
-            <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
-
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider"/>
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
-                    A Modern Hotel in
-                    <span class="text-body-secondary">the Golden City</span>
-                </h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="100">
-                    The hotel is a stunning example of modern architecture that shines in the golden sunset.
-                    It is nestled in the lively heart of the city, where you can experience the business district and
-                    the shopping area at your fingertips.
-                </p>
-            </div>
-            <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
-                <img src="{{ url_for('static', filename='images/ai_hotel_building.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
-                height="500"
-                    alt="..."  />
-            </div>
-        </div>
-
-        <hr class="featurette-divider" />
-
-        <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
-                    Enjoy the Comfort and
-                    <span class="text-body-secondary">Service of Our Hotel Lobby</span>
-                </h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="100">
-                    The lobby is spacious and bright, with a 24-hour front desk and
-                    a tour desk that can assist guests with travel arrangements.
-                </p>
-            </div>
-            <div class="col-md-5 order-md-1" data-aos="zoom-in" data-aos-delay="100">
-                <img src="{{ url_for('static', filename='images/ai_hotel.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
-                height="500"
-                    alt="..." />
-            </div>
-        </div>
-
-        <hr class="featurette-divider" />
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1" data-aos="fade-up">
-                    Spacious Rooms with City Views and
-                    <span class="text-body-secondary">24-Hour Room Service</span>
-                </h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="100">
-                    The rooms are spacious and bright, with large windows that offer stunning views of the city.
-                    You can enjoy the convenience of free Wi-Fi, flat-screen TV, minibars and private bathrooms in every
-                    room.
-                    Whether you need a snack, a drink or a full meal, you can always count on our 24-hour room service
-                    to satisfy your cravings.
-                </p>
-            </div>
-            <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
-                <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" class="featurette-image img-fluid mx-auto" width="500"
-                height="500"
-                    alt="..." />
-            </div>
-        </div>
-
-        <hr class="featurette-divider" />
-
-        <!-- /END THE FEATURETTES -->
-    </div>
-    <!-- /.container -->
-</main>
-
-
-{% endblock body %}
-
-{% block script%}
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var navLink = document.querySelector(".nav-link[href='/']");
-        navLink.classList.add("active");
-        navLink.setAttribute("aria-current", "page");
-    });
-</script>
-{% endblock script%}
+        <!-- /.container -->
+    </main>
+    
+    
+    {% endblock body %}
+    
+    {% block script%}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var navLink = document.querySelector(".nav-link[href='/']");
+            navLink.classList.add("active");
+            navLink.setAttribute("aria-current", "page");
+        });
+    </script>
+    {% endblock script%}
