@@ -144,6 +144,7 @@ title%} {% block head %}
                             <p id="p4"></p>
                             <p id="p5"></p>
                             <p id="p6"></p>
+                            <p id="p7"></p>
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary mt-5" onclick="stepperForm.previous()">Previous</button>
@@ -194,6 +195,7 @@ title%} {% block head %}
       </script>
       <script>
         function review() {
+            var room_price = JSON.parse('{{room_price | tojson}}');
             var room_type = document.getElementById('room_type').value;
             var guest_name = document.getElementById('guest_name').value;
             var check_in_date = document.getElementById('check_in_date').value;
@@ -206,6 +208,11 @@ title%} {% block head %}
             document.querySelector("#p4").innerHTML = '<strong>Check Out Date:</strong> ' + check_out_date;
             document.querySelector("#p5").innerHTML = '<strong>Contact Email:</strong> ' + contact_email;
             document.querySelector("#p6").innerHTML = '<strong>Contact Phone:</strong> ' + contact_phone;
+            var date1 = new Date(check_in_date);
+            var date2 = new Date(check_out_date);
+            var diff = date2.getTime() - date1.getTime();
+            var diffDays = diff / (1000 * 60 * 60 * 24);
+            document.querySelector("#p7").innerHTML = '<strong>Total Price:</strong> ' + diffDays * room_price[room_type];
         }
       </script>
       <script src="{{ url_for('static', filename='js/stepper.js') }}"></script>
