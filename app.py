@@ -23,13 +23,6 @@ app.config['SECRET_KEY'] = 'YourSecretKey'
 
 db = SQLAlchemy(app)
 
-# Example room data (in a real application, this would come from a database)
-room_price = {
-    'Single Room': 100.0,
-    'Double Room': 150.0,
-    'Deluxe Room': 200.0
-}
-
 class Guest(db.Model):
     __tablename__ = 'guest'
     guest_id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +41,12 @@ class Booking(db.Model):
 
     guest = db.relationship('Guest', backref='booking')
 
+room_price = {
+    'Single Room': 100.0,
+    'Double Room': 150.0,
+    'Deluxe Room': 200.0
+}
+
 class BookingForm(FlaskForm):
     guest_name = StringField('Guest Name', validators=[DataRequired()], description="Name")
     room_type = SelectField('Room Type', choices=room_price.keys(), validators=[DataRequired()], description="Room Type")
@@ -59,7 +58,7 @@ class BookingForm(FlaskForm):
     def validate_check_in_date(self, field):
         if field.data >= self.check_out_date.data:
             raise ValidationError('Check-In Date must be earlier than Check-Out Date.')
-        
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -96,10 +95,6 @@ def rooms():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-@app.route('/test')
-def test():
-    return render_template('success.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
