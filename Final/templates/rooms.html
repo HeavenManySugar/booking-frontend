@@ -1,5 +1,7 @@
 {% extends "layout/base.html" %} {% block title %}Hotel Booking{% endblock
-title%} {% block head %} {% endblock head %} {% block body %}
+title%} {% block head %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rooms-and-suites.css') }}">
+{% endblock head %} {% block body %}
 
 <div class="container">
   <!-- Top Text -->
@@ -7,7 +9,7 @@ title%} {% block head %} {% endblock head %} {% block body %}
     <h2 class="page-header">Star Hotel Rooms</h2>
     <hr />
     <p class="page-sub-header">
-      Get the most of our hotel specials. Enjoy the modern <br />
+      Enjoy the modern <br />
       comfort and panoramic view
     </p>
   </div>
@@ -17,19 +19,19 @@ title%} {% block head %} {% endblock head %} {% block body %}
     <div class="row center-lg">
       <div class="col image-col right-marg">
         <img
-          src="assets/img/hotel-1.webp"
+          src="{{ url_for('static', filename='images/fitnessRoom1.jpg') }}"
           alt="room-image"
           class="small-image"
           _mstalt="149058"
         />
         <img
-          src="assets/img/hotel-2.webp"
+          src="{{ url_for('static', filename='images/fitnessRoom2.jpg') }}"
           alt="room-image"
           class="small-image"
           _mstalt="149058"
         />
         <img
-          src="assets/img/hotel-3.webp"
+          src="{{ url_for('static', filename='images/ai_hotel.jpg') }}"
           alt="room-image"
           class="small-image"
           _mstalt="149058"
@@ -37,7 +39,7 @@ title%} {% block head %} {% endblock head %} {% block body %}
         <div class="side-by-side-container">
           <div class="large-image-container">
             <img
-              src="assets/img/hotel-4-large.webp"
+              src="{{ url_for('static', filename='images/outdoorPool.jpg') }}"
               alt="room-image-large"
               class="large-image"
               _mstalt="294879"
@@ -46,7 +48,7 @@ title%} {% block head %} {% endblock head %} {% block body %}
           <section class="stacked-image-container">
             <div>
               <img
-                src="assets/img/hotel-5.webp"
+                src="{{ url_for('static', filename='images/saunaNBathroom1.jpg') }}"
                 alt="room-image"
                 class="small-image"
                 _mstalt="149058"
@@ -54,8 +56,8 @@ title%} {% block head %} {% endblock head %} {% block body %}
             </div>
             <div>
               <img
-                src="assets/img/hotel-6.webp"
-                alt="room-image"
+                src="{{ url_for('static', filename='images/saunaNBathroom2.jpg') }}"
+                alt="`image"
                 class="small-image"
                 _mstalt="149058"
               />
@@ -64,43 +66,43 @@ title%} {% block head %} {% endblock head %} {% block body %}
         </div>
       </div>
       <div class="col">
-        <h3 class="offers-title">Special Offers</h3>
+        <h3 class="offers-title">FACILITIES</h3>
         <p class="offers-sub-title">
-          Get 10% discount off this city view- standard room. <br />
-          Offers valid till june 31st 2020
+          Find everything you need for a relaxing and <br />
+          productive stay at our hotel facilities
         </p>
         <ul class="offers-list">
           <li>
             <div>
               <img
-                src="assets/img/check-square.svg"
+                src="{{ url_for('static', filename='images/check-square.svg') }}"
                 alt="tick"
                 class="list-icon"
                 _mstalt="46969"
               />
-              <p class="list-text">Free Wi-Fi Service</p>
+              <p class="list-text">Outdoor Pool</p>
             </div>
           </li>
           <li>
             <div>
               <img
-                src="assets/img/check-square.svg"
+                src="{{ url_for('static', filename='images/check-square.svg') }}"
                 alt="tick"
                 class="list-icon"
                 _mstalt="46969"
               />
-              <p class="list-text">Best Rate Guarantee</p>
+              <p class="list-text">Fitness Room</p>
             </div>
           </li>
           <li>
             <div>
               <img
-                src="assets/img/check-square.svg"
+                src="{{ url_for('static', filename='images/check-square.svg') }}"
                 alt="tick"
                 class="list-icon"
                 _mstalt="46969"
               />
-              <p class="list-text">Free DSTV Access</p>
+              <p class="list-text">Sauna & Bathroom</p>
             </div>
           </li>
         </ul>
@@ -110,58 +112,44 @@ title%} {% block head %} {% endblock head %} {% block body %}
   </section>
 
   <!-- Rooms -->
-  <section class="rooms-section">
-    <div class="row room-section-header-container">
-      <div class="col col-3">
-        <h4 class="room-section-header active-header" id="standard-room">
-          Standard Rooms
-        </h4>
-      </div>
-      <div class="col col-3">
-        <h4 class="room-section-header" id="executive-room">Executive Rooms</h4>
-      </div>
-      <div class="col col-3">
-        <h4 class="room-section-header" id="king-room">King Suites</h4>
-      </div>
-    </div>
     <div class="row center-lg">
-      <div class="rooms col col-2">
+      <div class="rooms col">
         <img
-          src="https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_42_nastdj.png"
+          src="{{ url_for('static', filename='images/ai_hotel_single_room.jpg') }}"
           alt=""
           class="rooms-img"
+          width="200vw"
         />
-        <h3 class="room-title">Standard Economic Single</h3>
+        <h3 class="room-title">Single Room</h3>
         <p class="room-text">
-          Designed specifically for Practicality and <br />
-          comfort
+          Our single rooms are designed with simplicity in mind and come equipped with modern amenities. These rooms are perfect for those looking for a comfortable stay at an affordable price.
         </p>
         <div>
           <div class="details-container">
             <img
-              src="assets/img/check-square.svg"
+              src="{{ url_for('static', filename='images/check-square.svg') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
             />
-            <p class="list-text">2 Persons</p>
+            <p class="list-text">1 Person</p>
           </div>
           <div class="details-container">
             <img
-              src="assets/img/check-square.svg"
+              src="{{ url_for('static', filename='images/bed.png') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
             />
-            <p class="list-text">1 Kingsize bed</p>
+            <p class="list-text">1 Single bed</p>
           </div>
         </div>
-        <p class="amount-text">NGN25,000 Per Night</p>
+        <p class="amount-text">NT$100 Per Night</p>
         <div class="buttons-container">
           <font _mstmutation="1"
-            ><a href="#" class="btn btn-ghost" _mstmutation="1">View More</a>
+            >
             <a
-              href="https://timbu.com/search?query=hotel"
+              href="booking"
               class="btn btn-fill"
               _mstmutation="1"
               >Book Now</a
@@ -169,21 +157,21 @@ title%} {% block head %} {% endblock head %} {% block body %}
           >
         </div>
       </div>
-      <div class="rooms col col-2">
+      <div class="rooms col">
         <img
-          src="https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_43_d9eepu.png"
+          src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}"
           alt=""
           class="rooms-img"
+          width="200vw"
         />
-        <h3 class="room-title">Standard Economic Single</h3>
+        <h3 class="room-title">Double Room</h3>
         <p class="room-text">
-          Designed specifically for Practicality and <br />
-          comfort
+          Our double rooms are perfect for couples or friends traveling together. These rooms are spacious and comfortable, with a king-size bed. The rooms also feature a minibar.
         </p>
         <div>
           <div class="details-container">
             <img
-              src="assets/img/check-square.svg"
+              src="{{ url_for('static', filename='images/check-square.svg') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
@@ -192,20 +180,20 @@ title%} {% block head %} {% endblock head %} {% block body %}
           </div>
           <div class="details-container">
             <img
-              src="assets/img/bed.png"
+              src="{{ url_for('static', filename='images/bed.png') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
             />
-            <p class="list-text">1 Kingsize bed</p>
+            <p class="list-text">1 Double bed</p>
           </div>
         </div>
-        <p class="amount-text">NGN35,000 Per Night</p>
+        <p class="amount-text">NT$150 Per Night</p>
         <div class="buttons-container">
           <font _mstmutation="1"
-            ><a href="#" class="btn btn-ghost" _mstmutation="1">View More</a>
+            >
             <a
-              href="https://timbu.com/search?query=hotel"
+              href="booking"
               class="btn btn-fill"
               _mstmutation="1"
               >Book Now</a
@@ -213,21 +201,21 @@ title%} {% block head %} {% endblock head %} {% block body %}
           >
         </div>
       </div>
-      <div class="rooms col col-2">
+      <div class="rooms col">
         <img
-          src="https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_44_anerdv.png"
+          src="{{ url_for('static', filename='images/ai_hotel_deluxe_room.jpg') }}"
           alt=""
           class="rooms-img"
+          width="200vw"
         />
-        <h3 class="room-title">Standard Economic Single</h3>
+        <h3 class="room-title">Deluxe Room</h3>
         <p class="room-text">
-          Designed specifically for Practicality and <br />
-          comfort
+          Our deluxe rooms provide a luxurious and comfortable stay. They are perfect for those who want to enjoy the best of both worlds - a relaxing stay in a luxurious room with all the amenities you need.
         </p>
         <div>
           <div class="details-container">
             <img
-              src="assets/img/check-square.svg"
+              src="{{ url_for('static', filename='images/check-square.svg') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
@@ -236,7 +224,7 @@ title%} {% block head %} {% endblock head %} {% block body %}
           </div>
           <div class="details-container">
             <img
-              src="assets/img/bed.png"
+              src="{{ url_for('static', filename='images/bed.png') }}"
               alt="tick"
               class="list-icon"
               _mstalt="46969"
@@ -244,56 +232,12 @@ title%} {% block head %} {% endblock head %} {% block body %}
             <p class="list-text">1 Kingsize bed</p>
           </div>
         </div>
-        <p class="amount-text">NGN45,000 Per Night</p>
+        <p class="amount-text">NT$200 Per Night</p>
         <div class="buttons-container">
           <font _mstmutation="1"
-            ><a href="#" class="btn btn-ghost" _mstmutation="1">View More</a>
+            >
             <a
-              href="https://timbu.com/search?query=hotel"
-              class="btn btn-fill"
-              _mstmutation="1"
-              >Book Now</a
-            ></font
-          >
-        </div>
-      </div>
-      <div class="rooms col col-2">
-        <img
-          src="https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_45_mtl458.png"
-          alt=""
-          class="rooms-img"
-        />
-        <h3 class="room-title">Standard Economic Single</h3>
-        <p class="room-text">
-          Designed specifically for Practicality and <br />
-          comfort
-        </p>
-        <div>
-          <div class="details-container">
-            <img
-              src="assets/img/check-square.svg"
-              alt="tick"
-              class="list-icon"
-              _mstalt="46969"
-            />
-            <p class="list-text">2 Persons</p>
-          </div>
-          <div class="details-container">
-            <img
-              src="assets/img/bed.png"
-              alt="tick"
-              class="list-icon"
-              _mstalt="46969"
-            />
-            <p class="list-text">1 Kingsize bed</p>
-          </div>
-        </div>
-        <p class="amount-text">NGN50,000 Per Night</p>
-        <div class="buttons-container">
-          <font _mstmutation="1"
-            ><a href="#" class="btn btn-ghost" _mstmutation="1">View More</a>
-            <a
-              href="https://timbu.com/search?query=hotel"
+              href="booking"
               class="btn btn-fill"
               _mstmutation="1"
               >Book Now</a

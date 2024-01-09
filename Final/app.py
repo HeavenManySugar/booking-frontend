@@ -79,7 +79,7 @@ def booking():
         db.session.commit()
         
         return render_template('success.html', form=form, total_price=total_price)
-    return render_template('booking.html', form=form)
+    return render_template('booking.html', form=form, room_price=room_price)
 
 @app.route('/rooms')
 def rooms():

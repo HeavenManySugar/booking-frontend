@@ -43,6 +43,85 @@ title%} {% block head %}
                 <form class="needs-validation" method="post" novalidate>
                 {{ form.hidden_tag() }}
                 <div id="test-form-1" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger1">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-auto">
+                            <center>
+                                <h2>Single Room</h2>
+                                <img src="{{ url_for('static', filename='images/ai_hotel_single_room.jpg') }}" alt="Single Room" class="rounded-circle lazy" width="100vw">
+                                <p><strong>NT$</strong>{{room_price['Single Room']}}</p>
+                                <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/check-square.svg') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">1 Person</p>
+                                    </div>
+                                    <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/bed.png') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">1 Single bed</p>
+                                </div>
+                            </center>
+                        </div>
+                        <div class="col-md-auto text-center">
+                            <center>
+                                <h2>Double Room</h2>
+                                <img src="{{ url_for('static', filename='images/ai_hotel_room.jpg') }}" alt="Double Room" class="rounded-circle lazy"  width="100vw">
+                                <p><strong>NT$</strong>{{room_price['Double Room']}}</p>
+                                <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/check-square.svg') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">2 Persons</p>
+                                    </div>
+                                    <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/bed.png') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">1 Double bed</p>
+                                </div>
+                            </center>
+
+                        </div>
+                        <div class="col-md-auto">
+                            <center>
+                                <h2>Deluxe Room</h2>
+                                <img src="{{ url_for('static', filename='images/ai_hotel_deluxe_room.jpg') }}" alt="Deluxe Room" class="rounded-circle lazy" width="100vw">
+                                <p><strong>NT$</strong>{{room_price['Deluxe Room']}}</p>
+                                <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/check-square.svg') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">2 Persons</p>
+                                    </div>
+                                    <div class="details-container">
+                                    <img
+                                        src="{{ url_for('static', filename='images/bed.png') }}"
+                                        alt="tick"
+                                        class="list-icon"
+                                        _mstalt="46969"
+                                    />
+                                    <p class="list-text">1 Kingsize bed</p>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+
                    {{ render_field(form.room_type) }}
                     <button type="button" class="btn btn-primary" onclick="stepperForm.next()">Next</button>
                 </div>

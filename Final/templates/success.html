@@ -3,39 +3,39 @@
     {% endblock head %} {% block body %}
     <main>
         <div class="container">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center" data-aos="fade-up">
                 <div class="col-md-auto">
                     <h2>Thank you for booking with us!</h2>
                 </div>
             </div>
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center" data-aos="zoom-in-up" data-aos-delay="100">
                 <div class="col-md-auto">
                     <img src="{{ url_for('static', filename='images/success.gif') }}" alt="success" class="img-fluid" />    
                 </div>
             </div>
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-md-auto">
                     <h4>Your Booking Details:</h4>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-auto">
-                    <p id="p1"></p>
-                    <p id="p2"></p>
-                    <p id="p3"></p>
+                <div class="col-md-auto" data-aos="fade-up-right">
+                    <p id="p1"><strong>Room Type:</strong> {{ form.room_type.data }}</p>
+                    <p id="p2"><strong>Guest Name:</strong> {{ form.guest_name.data }}</p>
+                    <p id="p3"><strong>Check In Date:</strong> {{ form.check_in_date.data }}</p>
                 </div>
-                <div class="col-md-auto">
-                    <p id="p4"></p>
-                    <p id="p5"></p>
-                    <p id="p6"></p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-auto">
-                    <p id="p7"></p>
+                <div class="col-md-auto" data-aos="fade-up-left">
+                    <p id="p4"><strong>Contact Email:</strong> {{ form.contact_email.data }}</p>
+                    <p id="p5"><strong>Contact Phone:</strong> {{ form.contact_phone.data }}</p>
+                    <p id="p6"><strong>Check Out Date:</strong> {{ form.check_out_date.data }}</p>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-md-auto">
+                    <p id="p7"><strong>Total Price:</strong> {{ total_price }}</p>
+                </div>
+            </div>
+            <div class="row justify-content-center" data-aos="fade-up">
                 <div class="col-md-auto">
                     <a href="/" class="btn btn-primary">Return Home</a>
                 </div>
@@ -45,15 +45,4 @@
     {% endblock body %}
     
     {% block script%}
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector("#p1").innerHTML = '<strong>Room Type:</strong> ' + "{{ form.room_type.data }}";
-            document.querySelector("#p2").innerHTML = '<strong>Guest Name:</strong> ' + "{{ form.guest_name.data }}";
-            document.querySelector("#p3").innerHTML = '<strong>Check In Date:</strong> ' + "{{ form.check_in_date.data }}";
-            document.querySelector("#p4").innerHTML = '<strong>Contact Email:</strong> ' + "{{ form.contact_email.data }}";
-            document.querySelector("#p5").innerHTML = '<strong>Contact Phone:</strong> ' + "{{ form.contact_phone.data }}";
-            document.querySelector("#p6").innerHTML = '<strong>Check Out Date:</strong> ' + "{{ form.check_out_date.data }}";
-            document.querySelector("#p7").innerHTML = '<strong>Total Price:</strong> ' + "{{ total_price }}";
-        })
-      </script>
     {% endblock script%}
