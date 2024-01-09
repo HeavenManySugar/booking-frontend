@@ -1,17 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, SelectField, EmailField, TelField
 from wtforms.validators import DataRequired, ValidationError
 
-from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-from datetime import datetime
+import yaml
+
+
+with open('config.yaml', 'r') as f:
+    config = yaml.safe_load(f.read())
+    user = config['POSTGRESQL_ENV']['POSTGRES_USER']
+    password = config['POSTGRESQL_ENV']['POSTGRES_PASSWORD']
+    host = config['POSTGRESQL_ENV']['POSTGRES_HOST']
+    port = config['POSTGRESQL_ENV']['POSTGRES_PORT']
+    database = config['POSTGRESQL_ENV']['POSTGRES_DB']
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'YourSecretKey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'YourSecretKey'
 
 db = SQLAlchemy(app)
 
